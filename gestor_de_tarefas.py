@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-def add_task():
+def add_tarefa():
     task = entry_task.get()
     if task:
         listbox_tasks.insert(tk.END, task)
@@ -9,14 +9,14 @@ def add_task():
     else:
         messagebox.showwarning("Aviso", "Digite uma tarefa.")
 
-def remove_task():
+def remover_tarefa():
     try:
         index = listbox_tasks.curselection()[0]
         listbox_tasks.delete(index)
     except IndexError:
         messagebox.showwarning("Aviso", "Selecione uma tarefa para remover.")
 
-def mark_done():
+def marcar_pronto():
     try:
         index = listbox_tasks.curselection()[0]
         task = listbox_tasks.get(index)
@@ -43,13 +43,13 @@ scrollbar.config(command=listbox_tasks.yview)
 entry_task = tk.Entry(root, width=50)
 entry_task.pack(pady=10)
 
-button_add = tk.Button(root, text="Adicionar Tarefa", command=add_task)
+button_add = tk.Button(root, text="Adicionar Tarefa", command=add_tarefa)
 button_add.pack(pady=5)
 
-button_remove = tk.Button(root, text="Remover Tarefa", command=remove_task)
+button_remove = tk.Button(root, text="Remover Tarefa", command=remover_tarefa)
 button_remove.pack(pady=5)
 
-button_done = tk.Button(root, text="Marcar Como Concluída", command=mark_done)
+button_done = tk.Button(root, text="Marcar Como Concluída", command=marcar_pronto)
 button_done.pack(pady=5)
 
 root.mainloop()
