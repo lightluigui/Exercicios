@@ -17,3 +17,7 @@ def pegarvendas():
 
 # Roda a nossa API
 app.run(host='0.0.0.0')
+
+#tabela = pd.read_csv('advertising.csv')
+#total_vendas = tabela['Vendas'].sum()
+#print(total_vendas)
