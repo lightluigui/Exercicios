@@ -1,5 +1,7 @@
 import openpyxl
 from openpyxl.styles import Font
+import tkinter as tk
+from tkinter import messagebox
 
 
 # Função para criar uma nova planilha de livro caixa
@@ -47,7 +49,65 @@ def adicionar_registro(nome_arquivo, data, descricao, entrada, saida):
     workbook.save(nome_arquivo)
 
 
-# Exemplo de uso
-nome_arquivo = "livro_caixa.xlsx"
-criar_livro_caixa(nome_arquivo)
-adicionar_registro(nome_arquivo, "2024-07-30", "Venda de Produto", 1000.0, 0.0)
+# Função para obter os valores dos campos de entrada e adicionar um registro
+def obter_valores_e_adicionar():
+    data = entry_data.get()
+    descricao = entry_descricao.get()
+    try:
+        entrada = float(entry_entrada.get())
+        saida = float(entry_saida.get())
+    except ValueError:
+        messagebox.showerror("Erro de valor", "Por favor, insira valores numéricos válidos para entrada e saída.")
+        return
+
+    adicionar_registro(nome_arquivo, data, descricao, entrada, saida)
+    messagebox.showinfo("Registro adicionado", "Registro adicionado com sucesso!")
+    limpar_campos()
+
+
+# Função para limpar os campos de entrada
+def limpar_campos():
+    entry_data.delete(0, tk.END)
+    entry_descricao.delete(0, tk.END)
+    entry_entrada.delete(0, tk.END)
+    entry_saida.delete(0, tk.END)
+
+
+# Criar a interface gráfica
+root = tk.Tk()
+root.title("Livro Caixa")
+
+# Criar os widgets
+label_data = tk.Label(root, text="Data (AAAA-MM-DD):")
+label_data.grid(row=0, column=0, padx=10, pady=5)
+
+entry_data = tk.Entry(root)
+entry_data.grid(row=0, column=1, padx=10, pady=5)
+
+label_descricao = tk.Label(root, text="Descrição:")
+label_descricao.grid(row=1, column=0, padx=10, pady=5)
+
+entry_descricao = tk.Entry(root)
+entry_descricao.grid(row=1, column=1, padx=10, pady=5)
+
+label_entrada = tk.Label(root, text="Entrada:")
+label_entrada.grid(row=2, column=0, padx=10, pady=5)
+
+entry_entrada = tk.Entry(root)
+entry_entrada.grid(row=2, column=1, padx=10, pady=5)
+
+label_saida = tk.Label(root, text="Saída:")
+label_saida.grid(row=3, column=0, padx=10, pady=5)
+
+entry_saida = tk.Entry(root)
+entry_saida.grid(row=3, column=1, padx=10, pady=5)
+
+button_adicionar = tk.Button(root, text="Adicionar Registro", command=obter_valores_e_adicionar)
+button_adicionar.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
+
+# Criar o arquivo de livro caixa
+nome_arquivo = "C:/Users/matheus.araujo/Desktop/livro_caixa.xlsx"
+
+
+# Iniciar o loop principal da interface gráfica
+root.mainloop()
