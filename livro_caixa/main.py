@@ -106,8 +106,8 @@ button_adicionar = tk.Button(root, text="Adicionar Registro", command=obter_valo
 button_adicionar.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
 
 # Criar o arquivo de livro caixa
-nome_arquivo = "C:/Users/matheus.araujo/Desktop/livro_caixa.xlsx"
-
+nome_arquivo = "C:/Users/matheus.araujo/Desktop/teste_planilha.xlsx"
+criar_livro_caixa(nome_arquivo)
 
 # Iniciar o loop principal da interface gráfica
 root.mainloop()
